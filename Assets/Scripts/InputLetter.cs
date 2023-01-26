@@ -28,7 +28,6 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         image = GetComponent<Image>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         inputCircle = InputCircle.Instance;
@@ -36,7 +35,6 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         SetUsed(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

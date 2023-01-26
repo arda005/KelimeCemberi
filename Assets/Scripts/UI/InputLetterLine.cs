@@ -31,14 +31,12 @@ public class InputLetterLine : MonoBehaviour
         UpdateUI();
     }
 
-    // Start is called before the first frame update
     public void SetStatic(InputLetter secondLetter)
     {
         this.secondLetter = secondLetter;
         UpdateUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!IsStatic)

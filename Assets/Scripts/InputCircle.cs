@@ -23,13 +23,11 @@ public class InputCircle : MonoBehaviour
         Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         Init();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -51,10 +49,10 @@ public class InputCircle : MonoBehaviour
         CurrentWord += inputLetter.Letter;
         inputLetter.SetUsed(true);
 
-        Debug.Log(CurrentWord);
-
         inputLetter.CreateLine();
         previousLetter = inputLetter;
+
+        WordPreview.Instance.Add(inputLetter.Letter);
     }
 
     public void ResetInput()
@@ -65,5 +63,6 @@ public class InputCircle : MonoBehaviour
 
         InputLetter.SetUsedAll(false);
         InputLetterLine.DeleteAllLines();
+        WordPreview.Instance.Clear();
     }
 }
