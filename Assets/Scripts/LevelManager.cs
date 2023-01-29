@@ -8,6 +8,11 @@ public class LevelManager : MonoBehaviour
 
     public LevelDatas levelDatas;
 
+    #region UNITY_INSPECTOR
+    public GameObject horizontalWordCreatorPrefab;
+    public GameObject verticalWordCreatorPrefab;
+    #endregion
+
     private void Awake()
     {
         Instance = this;
