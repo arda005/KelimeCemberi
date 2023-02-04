@@ -41,6 +41,33 @@ MonoBehaviour:
                   letters: []
               - letter: 100
                 nestedWord:
+                  letters:
+                  - letter: 97
+                    nestedWord:
+                      letters: []
+                  - letter: 100
+                    nestedWord:
+                      letters: []
+                  - letter: 97
+                    nestedWord:
+                      letters: []
+                  - letter: 97
+                    nestedWord:
+                      letters: []
+                  - letter: 97
+                    nestedWord:
+                      letters: []
+                  - letter: 97
+                    nestedWord:
+                      letters: []
+              - letter: 97
+                nestedWord:
+                  letters: []
+              - letter: 97
+                nestedWord:
+                  letters: []
+              - letter: 97
+                nestedWord:
                   letters: []
               - letter: 97
                 nestedWord:

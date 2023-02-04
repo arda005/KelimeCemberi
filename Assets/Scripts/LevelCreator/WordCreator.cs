@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class WordCreator : MonoBehaviour
@@ -73,6 +72,7 @@ public class WordCreator : MonoBehaviour
     private void CreateLetter(Letter letter)
     {
         var createdObject = Instantiate(letterPrefab, rectTransform);
+        var createdRect = createdObject.GetComponent<RectTransform>();
         var wordCreatorLetter = createdObject.GetComponent<WordCreatorLetter>();
         wordCreatorLetter.Init(letter);
     }
