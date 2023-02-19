@@ -64,6 +64,8 @@ public class WordCreator : MonoBehaviour
                 CreateEmptyLetter(letter);
             else
                 CreateLetter(letter);
+
+            LevelManager.Instance.TryAddDifferentLetter(letter.letter);
         }
 
         wordCreatorLetters = GetComponentsInChildren<WordCreatorLetter>();

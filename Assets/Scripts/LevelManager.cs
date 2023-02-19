@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     public LevelDatas levelDatas;
 
+    private List<char> differentLetters = new List<char>();
+
     #region UNITY_INSPECTOR
     public GameObject horizontalWordCreatorPrefab;
     public GameObject verticalWordCreatorPrefab;
@@ -28,5 +30,14 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool TryAddDifferentLetter(char letter)
+    {
+        bool isContained = differentLetters.Contains(letter);
+
+        if(!isContained) differentLetters.Add(letter);
+
+        return isContained;
     }
 }
