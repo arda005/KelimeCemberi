@@ -22,6 +22,8 @@ public class LevelCreator : MonoBehaviour
         wordCreator.Init(LevelManager.Instance.levelDatas.levels[0].word);
 
         SetCenterPoint();
+
+        InputCircle.Instance.Init();
     }
 
     // Update is called once per frame

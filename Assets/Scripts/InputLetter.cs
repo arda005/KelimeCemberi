@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +9,9 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public RectTransform rectTransform { get; private set; }
 
-    public char Letter { get; private set; } = 'A';
+    private TMP_Text text;
+
+    public char Letter { get; private set; }
 
     private bool isUsed;
 
@@ -26,13 +29,21 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
+        text = GetComponentInChildren<TMP_Text>();
+
+        inputCircle = InputCircle.Instance;
     }
 
     void Start()
     {
-        inputCircle = InputCircle.Instance;
-
         SetUsed(false);
+    }
+
+    public void Init(char letter)
+    {
+        Letter = letter;
+
+        UpdateUI();
     }
 
     void Update()
@@ -77,6 +88,7 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void UpdateUI()
     {
         SetColor();
+        text.text = Letter.ToString();
     }
 
     public void CreateLine()

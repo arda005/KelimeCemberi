@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public LevelDatas levelDatas;
 
-    private List<char> differentLetters = new List<char>();
+    public readonly List<char> differentLetters = new List<char>();
 
     #region UNITY_INSPECTOR
     public GameObject horizontalWordCreatorPrefab;
