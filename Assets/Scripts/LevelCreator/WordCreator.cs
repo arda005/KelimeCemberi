@@ -65,7 +65,7 @@ public class WordCreator : MonoBehaviour
             else
                 CreateLetter(letter);
 
-            LevelManager.Instance.TryAddDifferentLetter(letter.letter);
+            LevelManager.Instance.TryAddDifferentLetter(letter.letter, currentWord.TotalCount(letter.letter));
         }
 
         wordCreatorLetters = GetComponentsInChildren<WordCreatorLetter>();

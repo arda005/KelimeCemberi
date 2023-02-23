@@ -6,4 +6,16 @@ using UnityEngine;
 public class Word
 {
     public Letter[] letters;
+
+    public int TotalCount(char letter)
+    {
+        int totalCount = 0;
+
+        foreach (Letter element in letters)
+        {
+            if(element.letter == letter) totalCount++;
+        }
+
+        return totalCount;
+    }
 }

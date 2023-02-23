@@ -29,35 +29,34 @@ public class InputCircle : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
-    void Start()
-    {
-        //Init();
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void Init()
     {
         InputLetters = CreateInputLetters();
+        ShuffleLetters();
     }
 
     private InputLetter[] CreateInputLetters()
     {
         var differenLetters = LevelManager.Instance.differentLetters;
-        var letters = new InputLetter[differenLetters.Count];
-        var degreePerLetter = 360 / (differenLetters.Count);
+        int totalDifferentLetterCount = LevelManager.Instance.TotalDifferentLetterCount();
+        var letters = new InputLetter[totalDifferentLetterCount];
+        var degreePerLetter = 360 / (totalDifferentLetterCount);
 
-        for (int i = 0; i < letters.Length; i++)
+        int currentIndex = 0;
+        for (int i = 0; i < differenLetters.Count; i++)
         {
-            letters[i] = Instantiate(InputLetterPrefab, rotationHandler);
-            rotationHandler.Rotate(Vector3.forward * degreePerLetter);
-            letters[i].rectTransform.SetParent(rectTransform);
-            letters[i].rectTransform.localEulerAngles = Vector3.zero;
+            var differentLetter = differenLetters[i];
+            for (int j = 0; j < differentLetter.count; j++)
+            {
+                letters[currentIndex] = Instantiate(InputLetterPrefab, rotationHandler);
+                rotationHandler.Rotate(Vector3.forward * degreePerLetter);
+                letters[currentIndex].rectTransform.SetParent(rectTransform);
+                letters[currentIndex].rectTransform.localEulerAngles = Vector3.zero;
 
-            letters[i].Init(differenLetters[i]);
+                letters[currentIndex].Init(differentLetter.letter);
+
+                currentIndex++;
+            }
         }
 
         return letters;
@@ -89,5 +88,18 @@ public class InputCircle : MonoBehaviour
         InputLetter.SetUsedAll(false);
         InputLetterLine.DeleteAllLines();
         WordPreview.Instance.Clear();
+    }
+
+    private void ShuffleLetters()
+    {
+        for (int i = 0; i < InputLetters.Length; i++)
+        {
+            var currentLetterPos = InputLetters[i].rectTransform.position;
+
+            var randomLetter = InputLetters[Random.Range(0, InputLetters.Length)];
+
+            InputLetters[i].rectTransform.position = randomLetter.rectTransform.position;
+            randomLetter.rectTransform.position = currentLetterPos;
+        }
     }
 }

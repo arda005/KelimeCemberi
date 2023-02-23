@@ -499,7 +499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: 0, y: 25}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &544066584
@@ -816,6 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDatas: {fileID: 11400000, guid: 0079ab84612d81940ad5b2a3934f8e43, type: 2}
+  differentLetters: []
   horizontalWordCreatorPrefab: {fileID: 8191462327744804793, guid: d541d856282507141ae8078168f7a19e, type: 3}
   verticalWordCreatorPrefab: {fileID: 4848634718227299902, guid: 4d5fad580bd1bb042bb4f1e04d0441df, type: 3}
 --- !u!4 &1771411145

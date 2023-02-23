@@ -88,7 +88,7 @@ public class InputLetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void UpdateUI()
     {
         SetColor();
-        text.text = Letter.ToString();
+        text.text = Letter.ToString().ToUpper();
     }
 
     public void CreateLine()
