@@ -6,9 +6,13 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    public LevelDatas levelDatas;
+    [SerializeField] private LevelDatas levelDatas;
+
+    public Level CurrentLevel { get { return levelDatas.levels[0]; } }
 
     public readonly List<LetterData> differentLetters = new List<LetterData>();
+
+    public bool IsGameEnd { get; private set; } = false;
 
     #region UNITY_INSPECTOR
     public GameObject horizontalWordCreatorPrefab;
@@ -57,6 +61,42 @@ public class LevelManager : MonoBehaviour
             totalCount += differentLetter.count;
 
         return totalCount;
+    }
+
+    public bool TryWord(string word)
+    {
+        var wordCreators = FindObjectsOfType<WordCreator>();
+        foreach(var wordCreator in wordCreators)
+        {
+            if (wordCreator.IsAnwered) continue;
+
+            if (wordCreator.GetWord().ToLower() == word.ToLower())
+            {
+                wordCreator.SetAnswered();
+
+                CheckGameEnd(wordCreators);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void CheckGameEnd(WordCreator[] wordCreators)
+    {
+        int totalAnsweredWords = 0;
+
+        foreach (var wordCreator in wordCreators)
+        {
+            if (wordCreator.IsAnwered)
+                totalAnsweredWords++;
+        }
+
+        if (totalAnsweredWords < wordCreators.Length)
+            return;
+
+        IsGameEnd = true;
+        Debug.Log("<color=green><b>You WON!</b></color>");
     }
 
     [System.Serializable]

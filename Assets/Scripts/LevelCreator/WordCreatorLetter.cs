@@ -8,6 +8,8 @@ public class WordCreatorLetter : MonoBehaviour
     public RectTransform rectTransform { get; private set; }
     public Letter Letter { get; private set; }
 
+    private bool isVisibla = false;
+
     private TMP_Text letterText;
 
     private void Awake()
@@ -24,6 +26,12 @@ public class WordCreatorLetter : MonoBehaviour
 
     public void UpdateUI()
     {
-        letterText.text = Letter.letter.ToString().ToUpper();
+        letterText.text = (isVisibla) ? Letter.letter.ToString().ToUpper() : string.Empty;
+    }
+
+    public void SetVisibla(bool isVisibla)
+    {
+        this.isVisibla = isVisibla;
+        UpdateUI();
     }
 }

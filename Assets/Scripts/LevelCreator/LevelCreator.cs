@@ -19,7 +19,7 @@ public class LevelCreator : MonoBehaviour
             GetComponent<RectTransform>());
 
         var wordCreator = createdObject.GetComponent<WordCreator>();
-        wordCreator.Init(LevelManager.Instance.levelDatas.levels[0].word);
+        wordCreator.Init(LevelManager.Instance.CurrentLevel.word);
 
         SetCenterPoint();
 

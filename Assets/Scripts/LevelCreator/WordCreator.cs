@@ -11,7 +11,9 @@ public class WordCreator : MonoBehaviour
 
     protected GameObject nestedWordPrefab;
 
-    private WordCreatorLetter[] wordCreatorLetters;
+    public WordCreatorLetter[] wordCreatorLetters;
+
+    public bool IsAnwered { get; private set; } = false;
 
     #region UNITY_INSPECTOR
     [SerializeField] private GameObject letterPrefab;
@@ -56,30 +58,33 @@ public class WordCreator : MonoBehaviour
 
     protected virtual void CreateLetters()
     {
-        foreach (Letter letter in currentWord.letters)
+        wordCreatorLetters = new WordCreatorLetter[currentWord.letters.Length];
+
+        for (int i = 0; i < currentWord.letters.Length; i++)
         {
+            var letter = currentWord.letters[i];
             bool isNested = letter.IsNested();
 
             if (isNested)
-                CreateEmptyLetter(letter);
+                wordCreatorLetters[i] = CreateEmptyLetter(letter);
             else
-                CreateLetter(letter);
+                wordCreatorLetters[i] = CreateLetter(letter);
 
             LevelManager.Instance.TryAddDifferentLetter(letter.letter, currentWord.TotalCount(letter.letter));
         }
-
-        wordCreatorLetters = GetComponentsInChildren<WordCreatorLetter>();
     }
 
-    private void CreateLetter(Letter letter)
+    private WordCreatorLetter CreateLetter(Letter letter)
     {
         var createdObject = Instantiate(letterPrefab, rectTransform);
         var createdRect = createdObject.GetComponent<RectTransform>();
         var wordCreatorLetter = createdObject.GetComponent<WordCreatorLetter>();
         wordCreatorLetter.Init(letter);
+
+        return wordCreatorLetter;
     }
 
-    protected virtual void CreateEmptyLetter(Letter letter)
+    protected virtual WordCreatorLetter CreateEmptyLetter(Letter letter)
     {
         var emptyLetter = Instantiate(letterSpacePrefab, rectTransform);
         var emptyLetterRect = emptyLetter.GetComponent<RectTransform>();
@@ -91,5 +96,22 @@ public class WordCreator : MonoBehaviour
 
         var wordCreator = wordCreatorGameObj.GetComponent<WordCreator>();
         wordCreator.Init(letter.nestedWord, letter);
+
+        return wordCreator.FindLetter(letter);
+    }
+
+    public void SetAnswered()
+    {
+        IsAnwered = true;
+
+        foreach(var letter in wordCreatorLetters)
+        {
+            letter.SetVisibla(true);
+        }
+    }
+
+    public string GetWord()
+    {
+        return currentWord.ToString();
     }
 }

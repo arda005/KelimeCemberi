@@ -81,6 +81,8 @@ public class InputCircle : MonoBehaviour
 
     public void ResetInput()
     {
+        LevelManager.Instance.TryWord(CurrentWord);
+
         IsInputActive = false;
         CurrentWord = string.Empty;
         previousLetter = null;

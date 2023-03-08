@@ -18,4 +18,15 @@ public class Word
 
         return totalCount;
     }
+
+    public override string ToString()
+    {
+        var word = string.Empty;
+        foreach (Letter element in letters)
+        {
+            word += element.letter;
+        }
+
+        return word;
+    }
 }
